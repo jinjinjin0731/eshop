@@ -1,0 +1,50 @@
+page,
+body {
+  height: 100%;
+}
+
+.index {
+  background-color: #ffffff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  &-search_into {
+    padding: 30px 40px;
+    position: relative;
+    height: 120px;
+    background: #ffffff;
+  }
+}
+
+.index-list {
+  flex-grow: 1;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.index-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: -1px 0 0;
+  overflow: hidden;
+
+  &_img {
+    width: 100%;
+  }
+}
+.animation .index-item {
+  animation: home_move 0.5s ease-in forwards;
+}
+
+@keyframes home_move {
+  0% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

@@ -1,0 +1,31 @@
+.search {
+  &-into {
+    display: flex;
+    // flex: 1;
+    flex-direction: row;
+    height: 60px;
+    width: 100%;
+    background-color: #f6f6f6;
+    justify-content: center;
+    align-items: center;
+  }
+  &-icon {
+    width: 30px;
+    height: 30px;
+  }
+  &-text {
+    height: 60px;
+    line-height: 60px;
+    color: #999;
+    font-size: 28px;
+  }
+}
+
+.small.search-into {
+  padding: 0 0 0 40px;
+  width: 600px;
+}
+
+.small.search-into .search_icon {
+  margin: 0 23px 0 28px;
+}
