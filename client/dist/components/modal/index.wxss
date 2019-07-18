@@ -1,0 +1,60 @@
+
+/*postcss-pxtransform rn eject enable*/
+.toplife_modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100; }
+  .toplife_modal_content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 600rpx;
+    height: 320rpx;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    background-color: #fff;
+    color: #232321;
+    text-align: center;
+    border-radius: 30rpx; }
+  .toplife_modal_title {
+    margin-top: 40rpx;
+    font-size: 32rpx; }
+  .toplife_modal_text {
+    margin-top: 40rpx;
+    font-size: 24rpx; }
+  .toplife_modal_btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 88rpx;
+    border-top: 2rpx solid #eee; }
+    .toplife_modal_btn_cancel {
+      color: #8c8c8c;
+      border-radius: 0;
+      border: 0;
+      border-right: 2rpx solid #eee;
+      border-bottom-left-radius: 30rpx; }
+    .toplife_modal_btn_confirm {
+      color: #666;
+      border-radius: 0;
+      border: 0;
+      border-bottom-right-radius: 30rpx; }
+    .toplife_modal_btn button {
+      display: block;
+      float: left;
+      width: 50%;
+      height: 88rpx;
+      text-align: center;
+      line-height: 88rpx;
+      font-size: 32rpx;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      background-color: #fff; }
+      .toplife_modal_btn button::after {
+        border: 0; }

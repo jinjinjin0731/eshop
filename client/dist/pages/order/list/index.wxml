@@ -1,0 +1,73 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="orders">
+        <view class="orders_list">
+            <block>
+                <block wx:if="{{orderList && orderList.length > 0}}">
+                    <view class="orders_item" wx:key="index" wx:for="{{orderList}}" wx:for-item="item" wx:for-index="index">
+                        <view class="orders_item_hd" bindtap="gotoBrand" data-e-tap-so="this" data-e-tap-a-a="{{item.shopInfo.venderId}}">
+                            <view class="orders_item_avatar">
+                                <image src="{{'http:' + item.shopInfo.thumbnail}}" mode="aspectFit" class="orders_item_avatar_img" lazy-load="{{true}}"></image>
+                            </view>
+                            <view class="orders_item_shop"><text class="orders_item_shop_name">{{item.shopInfo.title}}</text><text class="{{item.statusClassName}}">{{item.orderStateStr}}</text>
+                            </view>
+                            <block wx:if="{{item.shopInfo.venderId}}"><text class="orders_arrow">{{'>'}}</text>
+                            </block>
+                        </view>
+                        <block>
+                            <block wx:if="{{item.isMulti}}">
+                                <view class="orders_item_bd orders_item_bd_multi">
+                                    <view class="orders_item_sku" wx:key="skuId" wx:for="{{item.skuInfoList}}" wx:for-item="sku" wx:for-index="_anonIdx2">
+                                        <image src="{{sku.info.images[0]}}" mode="aspectFill" class="orders_item_sku_img" lazy-load="{{true}}"></image>
+                                    </view>
+                                    <view class="orders_item_count"><text class="fontSize24 grey">共</text><text class="fontSize24 orders_item_count_txt">{{item.totalGoodsCount}}</text><text class="fontSize24 grey">件</text>
+                                    </view><text class="orders_arrow">{{'>'}}</text>
+                                </view>
+                            </block>
+                            <block wx:else>
+                                <view class="orders_item_bd">
+                                    <view class="orders_item_sku">
+                                        <image src="{{item.skuItem.info.images[0]}}" mode="aspectFill" class="orders_item_sku_img" lazy-load="{{true}}"></image>
+                                    </view>
+                                    <view class="orders_item_info"><text class="orders_item_info_tit">{{item.skuItem.info.skuName}}</text>
+                                        <view class="orders_item_info_attr">
+                                            <block wx:if="{{item.skuItem.info.colorInfo.value}}"><text class="orders_item_info_attr_txt">{{item.skuItem.info.colorInfo.name}}：{{item.skuItem.info.colorInfo.value}}</text>
+                                            </block>
+                                            <block wx:if="{{item.skuItem.info.sizeInfo.value}}"><text class="orders_item_info_attr_txt">{{item.skuItem.info.sizeInfo.name}}：{{item.skuItem.info.sizeInfo.value}}</text>
+                                            </block>
+                                        </view><text class="orders_item_info_tip">支持7天无理由退换</text>
+                                        <view class="orders_item_info_buy">
+                                            <view class="orders_item_info_price"><text class="orders_item_symbol">￥</text><text class="orders_item_info_price_txt">{{item.skuItem.info.price}}</text>
+                                            </view><text class="orders_item_info_count">X{{item.skuItem.num}}</text>
+                                        </view>
+                                    </view>
+                                </view>
+                            </block>
+                        </block>
+                        <view class="orders_item_ft">
+                            <view class="orders_item_total"><text>支付金额：</text><text class="orders_item_symbol">￥</text><text class="orders_item_total_price">{{item.shouldPayPrice}}</text>
+                            </view>
+                            <block wx:if="{{item.orderState === 1}}">
+                                <view class="orders_item_op"><text class="orders_item_btn" bindtap="payOrder" data-e-tap-so="this" data-e-tap-a-a="{{item}}">去支付</text>
+                                </view>
+                            </block>
+                        </view>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="orders_list_none">
+                        <image src="{{icSearchTips}}" class="orders_list_none_img"></image>
+                        <view class="orders_list_none_tip"><text class="orders_list_none_tip_tit">很抱歉</text><text class="orders_list_none_tip_txt">没有相关订单</text>
+                        </view><text class="orders_list_none_btn" bindtap="gotoHome">去首页逛逛</text>
+                    </view>
+                </block>
+            </block>
+            <block wx:if="{{orderList.isFetchingList && !isFirst}}">
+                <view class="orders_list_loading">
+                    <image class="orders_list_loading_img" src="{{orderLoading}}"></image>
+                </view>
+            </block>
+            <block wx:if="{{orderList && orderList.length}}"><text class="orders_list_end">已加载完毕</text>
+            </block>
+        </view>
+    </view>
+</block>

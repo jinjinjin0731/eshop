@@ -1,0 +1,14 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="cart">
+        <scroll-view class="{{cartClass}}" scroll-y="{{!showEidtBox}}" bindscroll="onViewScroll" enable-back-to-top="{{true}}" data-e-scroll-so="this">
+            <commondity compid="{{$compid__1}}"></commondity>
+            <goods compid="{{$compid__2}}"></goods>
+        </scroll-view>
+        <block wx:if="{{showEidtBox}}">
+            <edit-box compid="{{$compid__3}}"></edit-box>
+        </block>
+        <view class="cart_bottom">
+            <bottom-bar compid="{{$compid__4}}"></bottom-bar>
+        </view>
+    </view>
+</block>

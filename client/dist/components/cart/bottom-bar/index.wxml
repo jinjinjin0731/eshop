@@ -1,0 +1,49 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{bottomClass}}" style="{{anonymousState__temp}}">
+        <block>
+            <block wx:if="{{isEditStatus}}">
+                <view class="bottom_bar del">
+                    <view class="bottom_bar_select">
+                        <label class="bottom_bar_select_wp" bindtap="checkAllCart" data-e-tap-so="this"><text class="{{checkDelAll ? 'select_radio on' : 'select_radio'}}"></text>
+                            <block>
+                                <block wx:if="{{checkDelAll}}">
+                                    <image class="select_radio_img" src="http://storage.jd.com/o2images/select_icon_on.png"></image>
+                                </block>
+                                <block wx:else>
+                                    <image class="select_radio_img" src="http://storage.jd.com/o2images/select_icon_off.png"></image>
+                                </block>
+                            </block><text class="select_radio_text" bindtap="checkAllCart">全选</text>
+                        </label>
+                    </view>
+                    <view class="{{hasDelCart ? 'bottom_bar_btn' : 'bottom_bar_btn del'}}" data-component-className="BottomBar" bindtap="handleDelbtn" data-e-tap-so="this" data-e-tap-a-a="{{hasDelCart}}"><text class="bottom_bar_text_del">删除</text>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="bottom_bar">
+                    <view class="bottom_bar_select">
+                        <label class="bottom_bar_select_wp" bindtap="checkAllCart"><text class="{{checkAll ? 'select_radio on' : 'select_radio'}}"></text>
+                            <block>
+                                <block wx:if="{{checkAll}}">
+                                    <image class="select_radio_img" src="http://storage.jd.com/o2images/select_icon_on.png"></image>
+                                </block>
+                                <block wx:else>
+                                    <image class="select_radio_img" src="http://storage.jd.com/o2images/select_icon_off.png"></image>
+                                </block>
+                            </block><text class="select_radio_text" bindtap="checkAllCart">全选</text>
+                        </label>
+                    </view>
+                    <view class="bottom_bar_total">
+                        <view class="bottom_bar_total_text"><text class="bottom_bar_total_text">共计：</text><text class="bottom_bar_total_small">￥</text><text class="bottom_bar_total_big">{{totalPrice}}</text>
+                        </view><text class="bottom_bar_total_desc">不含运费</text>
+                    </view>
+                    <view class="{{checkCartNum === 0 ? 'bottom_bar_btn bottom_bar_btn_none' : 'bottom_bar_btn'}}" bindtap="gotoBalance" data-e-tap-so="this"><text bindtap="gotoBalance" class="bottom_bar_text" data-e-tap-so="this">去结算({{checkCartNum}})</text>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <block wx:if="{{showConfirm}}">
+            <modal compid="{{$compid__9}}"></modal>
+        </block>
+    </view>
+</block>

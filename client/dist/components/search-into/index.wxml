@@ -1,0 +1,5 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{_cls}}">
+        <image mode="aspectFit" class="search-icon" src="{{searchIcon}}"></image><text class="search-text">{{placeholder}}</text>
+    </view>
+</block>

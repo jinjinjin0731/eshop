@@ -1,0 +1,52 @@
+<block wx:if="{{$taroCompReady}}">
+    <block wx:if="{{!isFirst}}">
+        <view class="shop_nocate" style="{{anonymousState__temp}}">
+            <view class="topbar">
+                <search-into compid="{{$compid__5}}"></search-into>
+                <view class="topbar_search_action">
+                    <view class="topbar_search_more" bindtap="toggleShowMore" data-e-tap-so="this">
+                        <image class="topbar_search_icon topbar_search_icon_more" src="{{SEARCH_BAR_MORE_IMAGE}}"></image>
+                        <block wx:if="{{showMore}}">
+                            <view class="topbar_search_more_container">
+                                <view class="topbar_search_more_container-inner">
+                                    <view class="topbar_search_more_connect" bindtap="connectService" data-e-tap-so="this">联系客服</view>
+                                    <view class="topbar_search_more_tohome" bindtap="onGotoPage" data-e-tap-so="this" data-e-tap-a-a="index">回到首页</view>
+                                    <view class="topbar_search_more_tocart" bindtap="onGotoPage" data-e-tap-so="this" data-e-tap-a-a="cart">购物车</view>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                    <block wx:if="{{showMore}}">
+                        <view class="mask" bindtap="toggleShowMore" data-e-tap-so="this"></view>
+                    </block>
+                </view>
+            </view>
+            <scroll-view scroll-y="{{true}}" class="shop_main-scroll">
+                <swiper class="shop_main_swiper" indicator-dots="{{true}}" indicator-color="#ddd" indicator-active-color="#232323" current="{{0}}" interval="3000" duration="300" circular="{{true}}" autoplay="{{true}}">
+                    <swiper-item wx:key="index" wx:for="{{banner}}" wx:for-item="item" wx:for-index="index">
+                        <image src="{{item}}" mode="widthFix" class="shop_main_swiper_item_image"></image>
+                    </swiper-item>
+                </swiper>
+                <view class="shop_floor">
+                    <view wx:key="index" class="shop_floor_item" wx:for="{{floors}}" wx:for-item="floor" wx:for-index="index">
+                        <view class="shop_floor_title">
+                            <image class="shop_floor_title_img" src="{{'http:' + floor.title}}" mode="widthFix"></image>
+                        </view>
+                        <block wx:if="{{floor.desc}}">
+                            <view class="shop_floor_desc">
+                                <image class="shop_floor_desc_img" src="{{floor.desc}}" mode="widthFix"></image>
+                            </view>
+                        </block>
+                        <view wx:key="floorIndex" class="goods_item" bindtap="onGotoDetail" wx:for="{{floor.commodities}}" wx:for-item="item" wx:for-index="floorIndex" data-e-tap-so="this" data-e-tap-a-a="{{item.skuId}}">
+                            <view class="goods_img">
+                                <image class="goods_img_image" src="{{item.images[0]}}" mode="widthFix" lazy-load="{{true}}"></image>
+                            </view>
+                            <view class="goods_info"><text class="goods_name" bindtap="onGotoDetail" data-e-tap-so="this" data-e-tap-a-a="{{item.skuId}}">{{item.skuName}}</text><text class="goods_price goods_price_new" decode="{{true}}">￥{{item.price}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </block>
+</block>

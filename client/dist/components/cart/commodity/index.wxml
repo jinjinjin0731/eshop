@@ -1,0 +1,103 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="cart_commoditys">
+        <block wx:if="{{isNeedFixedBar}}">
+            <view class="cart_nav_fix"><text class="{{hasCommodity ? 'cart_nav_fix_edit' : 'cart_nav_fix_edit hide'}}" bindtap="handleEditClick" data-e-tap-so="this">{{isEditStatus ? '完成' : '编辑'}}</text>
+            </view>
+        </block>
+        <block wx:if="{{hasCommodity}}">
+            <view class="cart_nav"><text class="cart_nav_edit cart_nav_text" bindtap="handleEditClick" data-e-tap-so="this">{{isEditStatus ? '完成' : '编辑'}}</text>
+            </view>
+        </block>
+        <block>
+            <block wx:if="{{hasCommodity}}">
+                <view class="cart_commodity" wx:key="$original.shop.venderId" wx:for="{{loopArray8}}" wx:for-item="commodity" wx:for-index="_anonIdx4">
+                    <view class="cart_commodity_header" bindtap="gotoShop" data-e-tap-so="this" data-e-tap-a-a="{{commodity.$original.shop.venderId}}">
+                        <image class="cart_commodity_header_image" src="{{'http:' + commodity.$original.shop.thumbnail}}" mode="widthFix" lazy-load="{{true}}"></image>
+                    </view>
+                    <view class="cart_commodity_content">
+                        <label class="cart_commodity_choose" style="{{commodity.$loopState__temp2}}" bindtap="checkShopCart" data-e-tap-so="this" data-e-tap-a-a="{{commodity.$original}}">
+                            <block>
+                                <block wx:if="{{isEditStatus ? commodity.$original.shop.checkDelAll : commodity.$original.shop.checkAll}}">
+                                    <image class="radio_icon_img" src="http://storage.jd.com/o2images/radio_icon_on.png"></image>
+                                </block>
+                                <block wx:else>
+                                    <image class="radio_icon_img_off" src="http://storage.jd.com/o2images/radio_icon_off.png"></image>
+                                </block>
+                            </block><text class="cart_radio_text">全选</text>
+                        </label>
+                        <view class="cart_commodity_item" wx:key="skuId" wx:for="{{commodity.$original.skus}}" wx:for-item="sku" wx:for-index="_anonIdx2">
+                            <label class="cart_commodity_item_choose" catchtap="checkOneCart" data-e-tap-so="this" data-e-tap-a-a="{{sku}}">
+                                <block>
+                                    <block wx:if="{{isEditStatus}}">
+                                        <block>
+                                            <block wx:if="{{sku.checkDel}}">
+                                                <image class="radio_icon_img" src="http://storage.jd.com/o2images/radio_icon_on.png"></image>
+                                            </block>
+                                            <block wx:else>
+                                                <image class="radio_icon_img_off" src="http://storage.jd.com/o2images/radio_icon_off.png"></image>
+                                            </block>
+                                        </block>
+                                    </block>
+                                    <block wx:else>
+                                        <block>
+                                            <block wx:if="{{sku.isCheck}}">
+                                                <image class="radio_icon_img" src="http://storage.jd.com/o2images/radio_icon_on.png"></image>
+                                            </block>
+                                            <block wx:else>
+                                                <image class="radio_icon_img_off" src="http://storage.jd.com/o2images/radio_icon_off.png"></image>
+                                            </block>
+                                        </block>
+                                    </block>
+                                </block>
+                            </label>
+                            <view class="cart_commodity_item_img" bindtap="gotoDetail" data-e-tap-so="this" data-e-tap-a-a="{{sku.skuId}}">
+                                <image class="cart_commodity_item_img_image" src="{{sku.main.images[0]}}" mode="aspectFill" lazy-load="{{true}}"></image>
+                            </view>
+                            <block>
+                                <block wx:if="{{!isEditStatus}}">
+                                    <view class="cart_commodity_item_wp cciw"><text class="cciw_title" bindtap="gotoDetail" data-e-tap-so="this" data-e-tap-a-a="{{sku.skuId}}">{{sku.main.skuName}}</text><text class="cciw_info gray"><text style="margin-right: 20rpx">{{sku.colorInfo ? '颜色：' + sku.colorInfo.value : ''}}</text>{{sku.sizeInfo ? '尺码：' + sku.sizeInfo.value : ''}}</text>
+                                        <view class="cciw_space"></view>
+                                        <view class="cciw_price"><text class="cciw_price_small">￥</text><text class="cciw_price_price">{{sku.main.price}}</text><text class="cciw_price_num flex1">X{{sku.num}}</text>
+                                        </view>
+                                    </view>
+                                </block>
+                                <block wx:else>
+                                    <view class="cart_commodity_item_edit ccie">
+                                        <view class="{{!sku.colorInfo && !sku.sizeInfo ? 'ccie_form hide' : 'ccie_form'}}" bindtap="getSkuAttr" data-e-tap-so="this" data-e-tap-a-a="{{sku}}">
+                                            <view class="ccie_form_left"><text class="ccie_form_text">{{sku.colorInfo ? '颜色：' + sku.colorInfo.value : ''}}</text><text class="ccie_form_text">{{sku.sizeInfo ? '尺码：' + sku.sizeInfo.value : ''}}</text>
+                                            </view>
+                                            <view class="ccie_form_right"><text class="ccie_form_icon"></text>
+                                            </view>
+                                        </view>
+                                        <view class="{{sku.isOutOfStock ? 'ccie_operation off' : 'ccie_operation'}}">
+                                            <view class="ccie_operation_wp" bindtap="minusCartNum" data-e-tap-so="this" data-e-tap-a-a="{{sku}}"><text class="ccie_operation_icon ccie_operation_minus"></text>
+                                            </view>
+                                            <input class="ccie_operation_num cciw_price_num" confirm-type="done" disabled="{{true}}" type="number" maxlength="3" value="{{changeNumMap[sku.skuId]}}" />
+                                            <view class="ccie_operation_wp right" bindtap="addCartNum" data-e-tap-so="this" data-e-tap-a-a="{{sku}}"><text class="ccie_operation_icon ccie_operation_add"></text>
+                                            </view>
+                                        </view>
+                                        <view class="ccie_btn cciw_btn end_start hide">
+                                            <button class="ccie_btn_item cciw_btn_item" plain="{{true}}">选择服务</button>
+                                        </view>
+                                    </view>
+                                </block>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="cart_commodity_none">
+                    <view class="cart_commodity_none_img">
+                        <image class="cart_commodity_none_icon" src="http://storage.jd.com/o2images/emptycart_icon.png"></image>
+                    </view>
+                    <view class="cart_commodity_none_text"><text>哎呀，购物车还没有东西~</text>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <block wx:if="{{showConfirm}}">
+            <modal compid="{{$compid__6}}"></modal>
+        </block>
+    </view>
+</block>

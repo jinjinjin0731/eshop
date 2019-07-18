@@ -1,0 +1,138 @@
+<block wx:if="{{$taroCompReady}}">
+    <block wx:if="{{!isFirst}}">
+        <view class="detail">
+            <scroll-view class="detail-scroll-view" scroll-y="{{!isShowCartLayer}}" enable-back-to-top="{{true}}">
+                <view class="detail_more">
+                    <block wx:if="{{showMore}}">
+                        <view class="detail_more_in">
+                            <view class="detail_more_connect" bindtap="connectService" data-e-tap-so="this">联系客服</view>
+                            <view class="detail_more_home" bindtap="gotoIndex" data-e-tap-so="this">回到首页</view>
+                        </view>
+                    </block>
+                    <block>
+                        <block wx:if="{{showMore}}">
+                            <view class="detail_more_icon detail_more_icon_arrow" bindtap="toggleShowMore" data-e-tap-so="this"></view>
+                        </block>
+                        <block wx:else>
+                            <view class="detail_more_icon" bindtap="toggleShowMore" data-e-tap-so="this"></view>
+                        </block>
+                    </block>
+                </view>
+                <view class="{{isIpx ? 'detail_swiper_wrap detail_swiper_wrap_ipx' : 'detail_swiper_wrap'}}">
+                    <block wx:if="{{sku.images}}">
+                        <swiper class="detail_swiper" indicator-dots="{{true}}" indicator-color="#ddd" indicator-active-color="#232323" current="{{0}}" interval="3000" duration="300" circular="{{true}}">
+                            <block wx:if="{{sku.images}}">
+                                <swiper-item wx:key="index" class="detail_swiper_item" wx:for="{{sku.images}}" wx:for-item="item" wx:for-index="index">
+                                    <image src="{{item}}" mode="widthFix"></image>
+                                </swiper-item>
+                            </block>
+                        </swiper>
+                    </block>
+                </view>
+                <view class="detail_info"><text class="detail_info_brand">{{sku.name}}</text><text class="detail_info_name">{{sku.skuName}}</text>
+                    <view class="detail_info_price"><text class="detail_info_price_yen">¥</text><text class="detail_info_price_num">{{sku.price}}</text><text class="detail_info_price_yen detail_info_price_yend">¥</text><text class="detail_info_price_num detail_info_price_numd">{{sku.price}}</text>
+                    </view>
+                </view>
+                <view wx:key="idx" class="detail_intro" wx:for="{{detailInfoRow}}" wx:for-item="item" wx:for-index="idx">
+                    <block wx:if="{{item.show}}">
+                        <view class="{{'detail_intro_row ' + item.name}}">
+                            <view class="detail_intro_hd" data-id="{{item.name}}" bindtap="toggleFold" data-e-tap-so="this" data-e-tap-a-a="{{idx}}"><text class="detail_intro_title" bindtap="toggleFold" data-e-tap-so="this" data-e-tap-a-a="{{idx}}">{{item.title}}</text><text class="detail_intro_title_icon">{{item.open ? '-' : '+'}}</text>
+                            </view>
+                            <block wx:if="{{item.open && idx < 2}}">
+                                <view class="detail_intro_bd">
+                                    <image class="detail_intro_bd_img" src="{{sku.desc && 'http:' + sku.desc[idx].image}}" mode="widthFix"></image>
+                                </view>
+                            </block>
+                            <block wx:if="{{item.open && idx === 2}}">
+                                <view class="detail_intro_bd">
+                                    <view class="intro_service_item">
+                                        <view class="intro_service_icon">
+                                            <image class="intro_service_icon" src="http://img14.360buyimg.com/ling/jfs/t17515/311/2405758638/2591/df64fd95/5af2619eN15039577.png"></image>
+                                        </view>
+                                        <view class="intro_service_des"><text class="intro_service_des_title">店铺发货&售后</text>
+                                            <block wx:if="{{serviceInfo}}">
+                                                <view class="intro_service_des_text"><text>{{serviceInfo}}</text>
+                                                </view>
+                                            </block>
+                                        </view>
+                                    </view>
+                                    <view class="intro_service_item">
+                                        <view class="intro_service_icon">
+                                            <image class="intro_service_icon" src="http://img20.360buyimg.com/ling/jfs/t19648/157/2365710951/2848/32543afe/5af26187Nfbebc808.png"></image>
+                                        </view>
+                                        <view class="intro_service_des"><text class="intro_service_des_title">货到付款</text><text class="intro_service_des_text">支持送货上门后再收款，支持现金、pos机刷卡等方式</text>
+                                        </view>
+                                    </view>
+                                    <view class="intro_service_item" bindtap="gotoAfterSale" data-e-tap-so="this">
+                                        <view class="intro_service_icon">
+                                            <image class="intro_service_icon" src="http://img30.360buyimg.com/ling/jfs/t18313/49/2358999676/2631/ebfad833/5af2618eNb6da904a.png"></image>
+                                        </view>
+                                        <view class="intro_service_des"><text class="intro_service_des_title">七天退换</text><text class="intro_service_des_text">支持七天无理由退换</text>
+                                        </view>
+                                    </view>
+                                </view>
+                            </block>
+                        </view>
+                    </block>
+                </view>
+                <view class="detail_no_more"><text class="detail_no_more_in">没有更多内容了</text>
+                </view>
+            </scroll-view>
+            <block wx:if="{{isShowCartLayer}}">
+                <view class="dlayer">
+                    <view class="dlayer_mask" bindtap="toggleDetailLayer" bindtouchmove="stopTouchMove" data-e-tap-so="this" data-e-touchmove-so="this"></view>
+                    <view class="dlayer_info"><text class="dlayer_close" bindtap="toggleDetailLayer" data-e-tap-so="this">X</text>
+                        <view class="dlayer_info_good" bindtouchmove="stopTouchMove">
+                            <view class="dlayer_info_sku">
+                                <image class="dlayer_info_sku_img" src="{{sku.images[0]}}" mode="aspectFit"></image>
+                            </view>
+                            <view class="dlayer_info_pn">
+                                <view class="dlayer_info_price"><text class="yen">¥&nbsp;</text><text class="price">{{sku.price}}</text>
+                                </view><text class="dlayer_info_nu">商品编号：{{sku.skuId}}</text>
+                            </view>
+                        </view>
+                        <view class="dlayer_summary">
+                            <view class="summary_row summary_address" bindtap="selecteAddress">
+                                <view class="summary_row_in flex_row"><text class="summary_row_tit">送至：</text><text class="summary_row_cont">{{areasName}}</text>
+                                </view>
+                                <view class="summary_row_in flex_row paddingTop22"><text class="summary_row_tit">运费：</text><text class="summary_row_cont">¥14</text>
+                                </view>
+                            </view>
+                            <view class="placeholder"></view>
+                        </view>
+                        <view class="summary_row summary_color">
+                            <view class="summary_row_in"><text class="summary_row_tit">{{sku.colorInfo.name}}：</text>
+                                <view class="summary_row_cont paddingTop22">
+                                    <view class="radiogroup"><text wx:key="index" class="{{prop === colorValue ? 'summary_row_cont_label label_active' : 'summary_row_cont_label'}}" bindtap="changeAttr" wx:for="{{sku.colorInfo.all}}" wx:for-item="prop" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="color" data-e-tap-a-b="{{prop}}">{{prop}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="summary_row summary_size">
+                            <view class="summary_row_in"><text class="summary_row_tit">{{sku.sizeInfo.name}}：</text>
+                                <view class="summary_row_cont paddingTop22">
+                                    <view class="radiogroup"><text wx:key="index" class="{{prop === sizeValue ? 'summary_row_cont_label label_active' : 'summary_row_cont_label'}}" bindtap="changeAttr" wx:for="{{sku.sizeInfo.all}}" wx:for-item="prop" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="size" data-e-tap-a-b="{{prop}}">{{prop}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="placeholder"></view>
+                        <view class="dlayer_btn_addcart" bindtap="addToCart" data-e-tap-so="this"><text class="dlayer_btn_addcart_text">确定</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="dlayer_action">
+                <view class="dlayer_bag" bindtap="toCartTab" data-e-tap-so="this">
+                    <image overlay-color="white" class="dlayer_bag-image" src="{{bagImage}}" width-fix="{{true}}"></image>
+                    <block wx:if="{{cartNum > 0}}">
+                        <view class="dlayer_bag_num"><text class="dlayer_bag_num_text">{{cartNum > 99 ? '99+' : cartNum}}</text>
+                        </view>
+                    </block>
+                </view>
+                <view class="dlayer_btn_addcart" bindtap="toggleDetailLayer" data-e-tap-so="this"><text class="dlayer_btn_addcart_text" bindtap="toggleDetailLayer" data-e-tap-so="this">加入购物车</text>
+                </view>
+            </view>
+        </view>
+    </block>
+</block>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "商品详情",
+  "enablePullDownRefresh": false,
+  "disableScroll": true
+}

@@ -1,0 +1,31 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{wpClass}}">
+        <view class="{{aniClass}}" bindanimationend="onAnimationEnd" data-e-animationend-so="this">
+            <view class="editbox_header">
+                <view class="editbox_header_img">
+                    <image src="{{sku.main.images[0]}}" mode="aspectFill"></image>
+                </view>
+                <view class="editbox_header_text"><text class="editbox_header_text_price"><text class="small">￥</text>{{sku.main.price}}</text><text class="editbox_header_text_desc">商品编号：{{sku.skuId}}</text>
+                </view><text class="editbox_header_close" bindtap="runCloseAni" data-e-tap-so="this"></text>
+            </view>
+            <view class="editbox_option">
+                <view class="editbox_option_title">{{colorInfo.name}}：</view>
+                <view class="editbox_option_wp"><text wx:key="idx" class="{{value === colorValue ? 'editbox_option_item on' : 'editbox_option_item'}}" bindtap="selectAttr" wx:for="{{colorInfo.all}}" wx:for-item="value" wx:for-index="idx" data-e-tap-so="this" data-e-tap-a-a="color" data-e-tap-a-b="{{value}}">{{value}}</text>
+                </view>
+            </view>
+            <view class="editbox_option size">
+                <view class="editbox_option_title">{{colorInfo.name}}：</view>
+                <view class="editbox_option_wp"><text wx:key="idx" class="{{value === sizeValue ? 'editbox_option_item on' : 'editbox_option_item'}}" bindtap="selectAttr" wx:for="{{sizeInfo.all}}" wx:for-item="value" wx:for-index="idx" data-e-tap-so="this" data-e-tap-a-a="size" data-e-tap-a-b="{{value}}">{{value}}</text>
+                </view>
+            </view>
+            <block>
+                <block wx:if="{{sku.isOutOfStock}}">
+                    <view class="editbox_offsale">该商品补货中</view>
+                </block>
+                <block wx:else>
+                    <view class="editbox_btn" bindtap="changeCartAttr" data-e-tap-so="this">确定</view>
+                </block>
+            </block>
+        </view>
+    </view>
+</block>

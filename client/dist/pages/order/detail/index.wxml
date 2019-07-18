@@ -1,0 +1,123 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="balance_page">
+        <block wx:if="{{showTip}}">
+            <view class="balance_tip"><text class="balance_tip_text">温馨提示：订单中包含不支持7天无理由退货的商品，请确认相关商品信息后提交订单</text>
+                <view class="balance_tip_close" bindtap="closeTip">
+                    <image class="balance_tip_close_image" src="https://static.360buyimg.com/tp-statics/2018-4-20/m/img/ic_close1@2x.png"></image>
+                </view>
+            </view>
+        </block>
+        <scroll-view class="balance" scroll-y="{{true}}">
+            <view class="balance_good">
+                <view class="balance_tit"><text class="balance_tit_text">商品与配送</text>
+                </view>
+                <view class="balance_box balance_good">
+                    <view class="balance_good_addr">
+                        <image class="balance_good_addr_icon" src="https://static.360buyimg.com/tp-statics/2018-4-20/m/img/ic_shdz46x60@2x.png"></image>
+                        <view class="addr_detail">
+                            <view class="addr_detail_header"><text class="addr_detail_grey">收货人A</text><text class="addr_detail_grey">123456789&nbsp;</text><text class="addr_default">&nbsp;默认</text>
+                            </view><text class="addr_text">广东省深圳市宝安区龙光世纪大厦</text>
+                        </view>
+                        <image class="balance_box_arrow" src="https://static.360buyimg.com/tp-statics/2018-4-20/m/img/ic_right_arrow@2x.png"></image>
+                    </view>
+                    <view class="balance_slice"></view>
+                    <view class="balance_good_express"><text class="balance_good_label">配送</text>
+                        <view class="val_wrap">
+                            <view class="val_express"><text class="expredd_grey">TARO商城配送</text><text class="express_fee"><text class="express_fee_small">¥</text>{{freightPrice}}</text>
+                            </view><text class="val_time">TARO商城配送默认时间</text>
+                        </view>
+                        <image class="balance_box_arrow" src="https://static.360buyimg.com/tp-statics/2018-4-20/m/img/ic_right_arrow@2x.png"></image>
+                    </view>
+                </view>
+                <view class="balance_good_wrap balance_good">
+                    <view class="balance_box" wx:key="{{true}}" wx:for="{{payCommodities}}" wx:for-item="item" wx:for-index="_anonIdx4">
+                        <view class="balance_good_shop">
+                            <image class="balance_good_shop_image" src="{{'http:' + item.shop.thumbnail}}" mode="aspectFill"></image>
+                        </view>
+                        <view class="balance_slice"></view>
+                        <view class="balance_good_items" wx:key="skuId" wx:for="{{item.skus}}" wx:for-item="sku" wx:for-index="_anonIdx2">
+                            <view class="balance_good_item">
+                                <view class="balance_good_items_pic">
+                                    <image class="balance_good_items_pic_image" src="{{sku.imgUrl}}" mode="aspectFill"></image>
+                                </view>
+                                <view class="info_wrap">
+                                    <view class="info"><text class="info_name balance_grey">{{sku.main.skuName}}</text><text class="info_size balance_grey">{{sku.sizeInfo.name}}: {{sku.sizeInfo.value}}</text><text class="info_size balance_grey">{{sku.colorInfo.name}}: {{sku.colorInfo.value}}</text><text class="info_support balance_grey">支持7天无理由退换</text>
+                                    </view>
+                                    <view class="price"><text class="price_val">¥{{sku.main.price}}</text><text class="price_num">X{{sku.num}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="balance_slice"></view>
+                        <view class="balance_good_count"><text class="count_text">共&nbsp;{{item.totalNum}}&nbsp;件商品</text><text class="count_total_text">小计：<text>¥{{item.totalPrice}}</text></text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="balance_pay">
+                <view class="balance_tit"><text class="balance_tit_text">支付信息</text>
+                </view>
+                <view class="balance_box">
+                    <view class="balance_pay_info balance_pay_way" bindtap="showPayWayBox"><text class="balance_pay_info_label">支付</text><text class="balance_pay">{{paymentType === 4 ? '微信支付' : '货到付款'}}</text>
+                        <view class="arrow"></view>
+                    </view>
+                    <view class="balance_pay_info balance_pay_coupon"><text class="balance_pay_info_label">优惠券</text><text class="coupon_val balance_pay">无可用</text>
+                        <view class="arrow"></view>
+                    </view>
+                    <view class="balance_pay_info balance_pay_invoice"><text class="balance_pay_info_label">发票</text><text class="balance_pay_info_val balance_pay">个人-商品明细</text>
+                        <view class="arrow"></view>
+                    </view>
+                </view>
+            </view>
+            <view class="balance_amount">
+                <view class="balance_tit"><text class="balance_tit_text">订单金额</text>
+                </view>
+                <view class="balance_box">
+                    <view class="balance_amount_info"><text class="label balance_grey">商品金额：</text><text class="val balance_grey">+￥{{totalPrice}}</text>
+                    </view>
+                    <view class="balance_amount_info"><text class="label balance_grey">运费：</text><text class="val balance_grey">+￥{{freightPrice}}</text>
+                    </view>
+                    <view class="balance_slice"></view><text class="balance_amount_total">合计：¥<block wx:if="{{allPrice}}"><text>{{allPrice}}</text>
+</block>
+</text>
+</view>
+</view>
+<block wx:if="{{aniShowPayWay}}">
+    <view class="{{showPayWay ? 'balance_pay_choose show' : 'balance_pay_choose'}}">
+        <view class="mask" bindanimationend="onAnimationEnd"></view>
+        <view class="main">
+            <view class="choose_main">
+                <view class="close_wrap">
+                    <view class="icon_close" bindtap="closePayWay"></view>
+                </view><text class="{{paymentType === 4 ? 'method checked' : 'method'}}" bindtap="checkPayWay" data-e-tap-so="this" data-e-tap-a-a="{{4}}">微信支付</text><text class="{{paymentType === 1 ? 'method checked' : 'method'}}" bindtap="checkPayWay" data-e-tap-so="this" data-e-tap-a-a="{{1}}">货到付款</text>
+            </view><text class="btn_close" bindtap="closePayWay">关闭</text>
+        </view>
+    </view>
+</block>
+</scroll-view>
+<view class="balance_footer">
+    <view class="balance_footer_info"><text class="balance_footer_info_text"><text>共计：</text><text class="yan">¥</text><text class="money">{{allPrice}}</text></text><text class="balance_footer_info_text">共<block wx:if="{{payNum}}"><text class="num">{{payNum}}</text>
+        </block>件商品</text>
+    </view>
+    <view bindtap="submitOrder" report-submit="true" class="balance_footer_btn" data-e-tap-so="this">
+        <block>
+            <block wx:if="{{paymentType === 4 || !paymentType}}">
+                <block>
+                    <block wx:if="{{isShowUserAuth}}">
+                        <view class="balance_footer_btn" bindtap="showUserAuthModal"><text class="balance_footer_btn_text">微信支付</text>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="balance_footer_btn" form-type="submit"><text class="balance_footer_btn_text">微信支付</text>
+                        </view>
+                    </block>
+                </block>
+            </block>
+            <block wx:else>
+                <view class="balance_footer_btn" form-type="submit">货到付款</view>
+            </block>
+        </block>
+    </view>
+</view>
+</view>
+</block>

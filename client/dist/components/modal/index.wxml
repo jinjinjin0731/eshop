@@ -1,0 +1,12 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="toplife_modal" catchtouchmove="preventTouchMove" data-e-touchmove-so="this">
+        <view class="toplife_modal_content">
+            <view class="toplife_modal_title">{{title}}</view>
+            <view class="toplife_modal_text">{{contentText}}</view>
+            <view class="toplife_modal_btn">
+                <button class="toplife_modal_btn_cancel" bindtap="onCancelClick" data-e-tap-so="this">{{cancelText}}</button>
+                <button class="toplife_modal_btn_confirm" bindtap="onConfirmClick" data-e-tap-so="this">{{confirmText}}</button>
+            </view>
+        </view>
+    </view>
+</block>

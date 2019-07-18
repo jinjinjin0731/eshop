@@ -1,0 +1,207 @@
+
+/*postcss-pxtransform rn eject enable*/
+.del_popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10; }
+
+.del_popup_content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 600rpx;
+  height: 320rpx;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: #232321;
+  text-align: center;
+  border-radius: 30rpx; }
+
+.del_popup_title {
+  margin-top: 40rpx;
+  font-size: 32rpx; }
+
+.del_popup_text {
+  margin-top: 40rpx;
+  font-size: 24rpx; }
+
+.del_popup_btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 88rpx;
+  border-top: 2rpx solid #eee; }
+
+.del_popup_btn_cancel {
+  color: #8c8c8c;
+  border-right: 2rpx solid #eee; }
+
+.del_popup_btn_confirm {
+  color: #666; }
+
+.del_popup_btn text {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+/*postcss-pxtransform rn eject disable*/
+.bottom_bar_wp {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 100%;
+  height: 100rpx;
+  position: relative;
+  background-color: #232321; }
+
+.bottom_bar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%; }
+
+.bottom_bar_select_wp {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.bottom_bar_select {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 170rpx;
+  height: 100rpx; }
+
+.select_radio_img {
+  width: 24rpx;
+  height: 24rpx; }
+
+.select_radio_text {
+  font-size: 24rpx;
+  color: #fff; }
+
+.bottom_bar_select .select_radio_real {
+  position: absolute;
+  left: 58rpx;
+  visibility: hidden; }
+
+.bottom_bar_total {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100rpx;
+  color: #fff; }
+
+.bottom_bar_total_text {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  color: white;
+  font-size: 24rpx; }
+
+.bottom_bar_total_small {
+  color: white;
+  font-size: 16rpx; }
+
+.bottom_bar_total_big {
+  color: white;
+  font-size: 32rpx; }
+
+.bottom_bar_total_desc {
+  color: white;
+  font-size: 18rpx; }
+
+.bottom_bar_btn {
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100rpx;
+  width: 228rpx;
+  right: 0;
+  top: 0;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #232321;
+  background-color: #bfa36c;
+  font-size: 32rpx; }
+
+.bottom_bar_btn.del {
+  background-color: #000000;
+  color: #fff; }
+
+.bottom_bar_btn_none {
+  background-color: #999999; }
+
+.bottom_bar_wp.hide {
+  display: none; }

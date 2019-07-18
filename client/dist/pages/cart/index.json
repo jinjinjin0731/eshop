@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "commondity": "../../components/cart/commodity/index",
+    "goods": "../../components/cart/goods/index",
+    "edit-box": "../../components/cart/edit-box/index",
+    "bottom-bar": "../../components/cart/bottom-bar/index"
+  },
+  "navigationBarTitleText": "购物车",
+  "backgroundColor": "#f2efef",
+  "disableScroll": true
+}

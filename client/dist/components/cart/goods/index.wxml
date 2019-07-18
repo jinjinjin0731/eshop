@@ -1,0 +1,37 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="goods_wp">
+        <view class="goods">
+            <view class="goods_tab">
+                <view class="goods_tab_item on">
+                    <image class="goods_tab_icon" src="http://storage.jd.com/o2images/history_icon_on.png"></image><text>最近浏览</text>
+                </view>
+            </view>
+            <block>
+                <block wx:if="{{hasNofootmark}}">
+                    <view class="goods_none">暂无最近浏览商品</view>
+                </block>
+                <block wx:else>
+                    <view class="goods_content footmark">
+                        <view class="goods_content_item" wx:key="skuId" bindtap="gotoDetail" data-elevel="1" data-eid="TOPLIFE_1528204514223" data-eparam="{{8 + index}}" wx:for="{{footmark}}" wx:for-item="good" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{good.skuId}}">
+                            <view class="goods_content_item_img">
+                                <image src="{{'https://' + good.imageUrl}}" mode="aspectFit" lazy-load="{{true}}"></image>
+                                <block wx:if="{{good.stockState === 34 || good.stockState === 0 || good.price === '-1'}}">
+                                    <view class="item_img_none"><text class="item_img_none_text">补货中</text>
+                                    </view>
+                                </block>
+                            </view>
+                            <view class="goods_content_item_wp gciw"><text class="gciw_brand">{{good.brandName}}</text><text class="gciw_name">{{good.shortName}}</text>
+                                <block>
+                                    <block wx:if="{{good.price === '-1'}}"><text class="gciw_none">暂无报价</text>
+                                    </block>
+                                    <block wx:else><text class="gciw_price"><text class="small">￥</text>{{good.price}}</text>
+                                    </block>
+                                </block>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </block>
+        </view>
+    </view>
+</block>

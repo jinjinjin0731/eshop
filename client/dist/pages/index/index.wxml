@@ -1,0 +1,12 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="index">
+        <view class="index-search_into">
+            <search-into compid="{{$compid__0}}"></search-into>
+        </view>
+        <scroll-view scroll-y="{{true}}" class="index-list">
+            <view wx:key="index" bindtap="onGotoPage" wx:for="{{floorList}}" wx:for-item="floor" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{floor.venderId}}">
+                <image mode="widthFix" class="index-item_img" src="{{floor.image}}" lazy-load="{{true}}"></image>
+            </view>
+        </scroll-view>
+    </view>
+</block>

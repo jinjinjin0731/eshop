@@ -1,0 +1,119 @@
+
+/*postcss-pxtransform rn eject enable*/
+.editbox {
+  display: none;
+  font-family: '-apple-system-font,Helvetica Neue,Helvetica,sans-serif';
+  z-index: 10; }
+  .editbox_content {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 150rpx;
+    width: 100%;
+    background-color: #fff; }
+  .editbox_header {
+    position: relative;
+    height: 180rpx; }
+    .editbox_header_img {
+      position: absolute;
+      left: 40rpx;
+      top: -60rpx;
+      width: 200rpx;
+      height: 200rpx;
+      border: 2rpx solid #ddd; }
+      .editbox_header_img .taro-img,
+      .editbox_header_img image {
+        width: 100%;
+        height: 100%; }
+    .editbox_header_text {
+      position: absolute;
+      top: 60rpx;
+      left: 270rpx; }
+      .editbox_header_text_price {
+        font-family: 'toplifeCustomEn';
+        font-size: 32rpx;
+        color: #232321; }
+      .editbox_header_text_desc {
+        display: block;
+        font-size: 24rpx;
+        line-height: 1.5;
+        color: #999999; }
+      .editbox_header_text .small {
+        font-size: 16rpx; }
+    .editbox_header_close {
+      position: absolute;
+      right: 35rpx;
+      top: 30rpx;
+      display: inline-block;
+      background-image: url("http://storage.jd.com/o2images/close_icon.png");
+      background-size: 100% 100%;
+      width: 40rpx;
+      height: 40rpx; }
+  .editbox_option {
+    margin-bottom: 40rpx;
+    padding: 0 40rpx;
+    color: #232321; }
+    .editbox_option_title {
+      font-size: 28rpx; }
+    .editbox_option_wp {
+      margin-top: 20rpx; }
+    .editbox_option_item {
+      display: inline-block;
+      margin-right: 34rpx;
+      margin-bottom: 30rpx;
+      padding: 30rpx 40rpx;
+      font-size: 24rpx;
+      text-align: center;
+      border: 2rpx solid #ddd; }
+      .editbox_option_item.on {
+        color: #fff;
+        background-color: #000; }
+    .editbox_option.size .editbox_option_item {
+      padding-left: 20rpx;
+      padding-right: 20rpx;
+      font-size: 32rpx;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box; }
+  .editbox_btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #fff;
+    background-color: #222;
+    text-align: center;
+    font-size: 32rpx; }
+  .editbox_offsale {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 76rpx;
+    line-height: 76rpx;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    font-size: 32rpx; }
+
+.bg_shade {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(35, 35, 33, 0.8);
+  z-index: 999; }
+
+.show {
+  display: block !important; }
+
+.show_wp {
+  -webkit-animation: slide_in 0.3s ease-out forwards;
+          animation: slide_in 0.3s ease-out forwards; }
+
+.hide_wp {
+  -webkit-animation: slide_out 0.3s ease-in forwards;
+          animation: slide_out 0.3s ease-in forwards; }
+
+.fade {
+  -webkit-animation: fade_out 0.3s ease-in-out forwards;
+          animation: fade_out 0.3s ease-in-out forwards; }
